@@ -5,19 +5,17 @@ st.title('Interface Mistral AI')
 
 # ====== Sidebar ======
 # Demande clé API
-mistral_api_key = st.text_input("Quel est votre nom ?")
-st.text_input("Entrez votre clé API", type="password", key="api_key", help="Générez une clé sur le site https://mistral.ai/")
+mistral_api_key = None
+if len(mistral_api_key) > 1:
+  st.write("Introduction à Mistral AI")
+  st.sidebar.text_input("Entrez votre clé API, "disabled=True)
+else:
+  mistral_api_key = st.sidebar.text_input("Entrez votre clé API", type="password", key="api_key", help="Générez une clé sur le site https://mistral.ai/")
 
 # Zones de texte
-st.write("Introduction à Mistral AI")
 
 
-# Zone de saisie
-user_name = st.text_input("Quel est votre nom ?")
-print(user_name) #TODO affichage dans la console
 
-# Slider
-user_age = st.slider("Quel est votre âge ?", 18,99,30)  #valeurs min,max,default
 
 # Bouton (boolean)
 if st.button("Valider"):
