@@ -32,7 +32,7 @@ user_age = st.slider("Quel est votre âge ?", 18,99,30)  #valeurs min,max,defaul
 if st.button("Valider"):
   st.write(f"Bonjour {user_name}, tu es né en {2024-user_age} !")
 
-user_country = st.selectbox("Sélectionnez votre Pays", ["France", "Espagne", "Italie"]
+user_country = st.selectbox("Sélectionnez votre Pays", ["France", "Espagne", "Italie"])
 
                          
 # Video
