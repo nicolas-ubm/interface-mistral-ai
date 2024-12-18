@@ -1,7 +1,6 @@
 import streamlit as st
 from functions import *
 from mistralai import Mistral
-import json
 
 st.title('Traduction')
 
@@ -18,8 +17,5 @@ else:
         
     if st.button("Exécuter") and prompt:
         response = get_translation(client, prompt)
-        response_dict = json.loads(response)
-        st.json(data_dict)
         #st.write(eval(response[O]))
-        #st.write(response)
-        st.json(response)
+        st.write(response)
