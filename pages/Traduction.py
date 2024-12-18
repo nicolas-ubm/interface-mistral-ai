@@ -4,6 +4,8 @@ from mistralai import Mistral
 
 st.title('Traduction')
 
+st.subheader("Work in progress...")
+
 # Demande une clé API
 mistral_api_key = st.sidebar.text_input("Entrez votre clé API", type="password", key="api_key", help="Vous pouvez générer une clé sur le site https://mistral.ai/")
 
