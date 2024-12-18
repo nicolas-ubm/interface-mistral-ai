@@ -11,11 +11,18 @@ st.write("Introduction à Mistral AI")
 
 st.write("""
 # Titre
-## Soustitre
-**Gras**
-`print("Hello World!)`
 
+## Soustitre
+
+**Gras**
+
+`print("Hello World!)`
 """)
+
+# Zone de saisie
+user_name = st.text_input("Quel est votre nom ?")
+st.write(user_name)
+print(user_name)
 
 # Bouton
 
