@@ -48,11 +48,14 @@ df = pd.read_csv(path_url, delimiter=";")
 #st.write(df)
 edited_df = st.data_editor(df)
 
+def convert_df(df):
+    return df.to_csv(index=False).encode('utf-8')
+edited_csv = convert_df(df)
 
 # Bouton de téléchargement des données CSV
 st.download_button(
     label="Download data as CSV",
-    data=edited_df,
+    data=edited_csv,
     file_name="data_edited.csv",
     mime="text/csv",
 )
