@@ -30,12 +30,12 @@ print(user_name) #TODO affichage dans la console
 if st.button("Valider"):
   st.write(f"Bonjour {user_name} !")
 
-
+# Slider
+st.slider("Quel est votre âge ?", 18,99,30)  #valeurs min,max,default
 
 # Video
 st.video("https://youtu.be/sgnrL7yo1TE")
 
-# Slider
 
 
 # Lecture d'un fichier CSV avec pandas
