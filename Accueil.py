@@ -4,6 +4,9 @@ import streamlit as st
 st.title('Interface Mistral AI')
 
 # ====== Sidebar ======
+# Image dans la sidebar
+st.sidebar.image("https://mistral.ai/images/logo_hubc88c4ece131b91c7cb753f40e9e1cc5_2589_256x0_resize_q97_h2_lanczos_3.webp")
+
 # Demande clé API
 mistral_api_key = st.sidebar.text_input("Entrez votre clé API", type="password", key="api_key", help="Générez une clé sur le site https://mistral.ai/")
 
