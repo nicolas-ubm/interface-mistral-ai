@@ -63,6 +63,11 @@ if mistral_api_key:
         "Emojibot": get_emojibot,
         "Traduction": get_translation
     }
+    agent_ids = {
+        "Sentiment": "ag:56f583a3:20241217:sentiment-n:1be886df",
+        "Emojibot": "ag:56f583a3:20241216:emojibot:3a89090a",
+        "Traduction": "ag:56f583a3:20241217:traduction-n:08c4f0f0"
+    }
     selected_agent = st.sidebar.selectbox("Choisissez un agent", list(agent_options.keys()), key="selected_agent")
 
     # Change le titre de la page selon l'agent choisi
@@ -81,14 +86,16 @@ if mistral_api_key:
     with col2:
         if st.button("Sauvegarder l'historique"):
             if st.session_state.messages:
-                data = [
-                    {
-                        "agent_id": agent_options[selected_agent].__name__,
-                        "prompt": msg["content"] if msg["role"] == "user" else "",
-                        "reponse": msg["content"] if msg["role"] == "assistant" else ""
-                    }
-                    for msg in st.session_state.messages
-                ]
+                data = []
+                for i in range(0, len(st.session_state.messages), 2):
+                    user_message = st.session_state.messages[i]["content"]
+                    assistant_message = st.session_state.messages[i + 1]["content"] if i + 1 < len(st.session_state.messages) else ""
+                    data.append({
+                        "agent_name": selected_agent,
+                        "agent_id": agent_ids[selected_agent],
+                        "prompt": user_message,
+                        "reponse": assistant_message
+                    })
                 df = pd.DataFrame(data)
                 timestamp = datetime.now().strftime("%Y%m%d-%H%M")
                 csv_filename = f"{timestamp}_historique_chatbot.csv"
