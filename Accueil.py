@@ -13,14 +13,7 @@ else:
     st.sidebar.warning("Veuillez entrer une clé API valide pour continuer.")
 
 
-mistral_api_key = None
-if len(mistral_api_key) > 1:
-  st.write("Introduction à Mistral AI")
-  st.sidebar.text_input("Entrez votre clé API", disabled=True)
-else:
-  mistral_api_key = st.sidebar.text_input("Entrez votre clé API", type="password", key="api_key", help="Générez une clé sur le site https://mistral.ai/")
 
-# Zones de texte
 
 
 
