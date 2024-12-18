@@ -3,8 +3,10 @@ import streamlit as st
 
 st.title('DEBUG')
 
-st.subheader("Fichiers dans le dossier courant")
+st.subheader("Versions")
+st.write(f"Version de Streamlit : {_.__version__}")
 
+st.subheader("Fichiers dans le dossier courant")
 # Obtenir le chemin du répertoire courant
 current_directory = os.getcwd()
 
@@ -12,7 +14,6 @@ current_directory = os.getcwd()
 files = os.listdir(current_directory)
 
 # Afficher la liste des fichiers
-st.write("Fichiers dans le dossier courant :")
 for file in files:
     st.write(file)
 
