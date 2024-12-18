@@ -232,7 +232,7 @@ def get_agent_response(client, prompt:str='Qui es-tu ?', last_interactions=[]):
     return response_assistant, last_interactions
 
 
-def get_images_comparaison(client, model, image_1_url, image_2_url):
+def get_images_comparaison(client, image_1_url, image_2_url):
     response = client.chat.complete(
         model=model,
         messages=[{
