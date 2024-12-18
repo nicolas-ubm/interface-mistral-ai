@@ -27,6 +27,7 @@ else:
     # Bouton pour exécuter la traduction
     if st.button("Exécuter") and prompt:
         response = get_translation(client, prompt)
+        st.write(response)
         
         try:
             # Supposons que `response` contient un JSON avec les traductions
