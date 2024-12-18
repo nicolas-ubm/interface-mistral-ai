@@ -45,7 +45,7 @@ import pandas as pd
 path_url = "https://raw.githubusercontent.com/Quera-fr/My-Credit/refs/heads/main/Analyse%20des%20donn%C3%A9es/test.csv"
 df = pd.read_csv(path_url)
 
-st.write(df)
+st.write(df, delimiter=";")
 
 
 
