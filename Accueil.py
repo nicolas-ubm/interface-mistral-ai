@@ -30,7 +30,7 @@ st.slider("Quel est votre âge ?", 18,99,30)  #valeurs min,max,default
 
 # Bouton (boolean)
 if st.button("Valider"):
-  st.write(f"Bonjour {user_name}, tu es né en {2024-user_age} !")
+  st.write(f"Bonjour {user_name}, tu as {user_age} ans !")
 
 
 # Video
