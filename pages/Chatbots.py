@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from datetime import datetime
 from mistralai import Mistral
 
 # Agents disponibles
@@ -49,7 +50,7 @@ def get_translation(client, prompt):
         return f"Erreur lors de l'appel à l'agent Traduction : {e}"
 
 # Demande une clé API dans la sidebar
-mistral_api_key = st.sidebar.text_input("Entrez votre clé Mistral API", type="password", key="api_key", help="Vous pouvez générer une clé sur le site https://mistral.ai/")
+mistral_api_key = st.sidebar.text_input("Entrez votre clé API", type="password", key="api_key", help="Vous pouvez générer une clé sur le site https://mistral.ai/")
 
 if mistral_api_key:
     if "client" not in st.session_state:
@@ -89,8 +90,15 @@ if mistral_api_key:
                     for msg in st.session_state.messages
                 ]
                 df = pd.DataFrame(data)
-                df.to_csv("historique_chat.csv", index=False)
-                st.sidebar.success("Historique sauvegardé en CSV")
+                timestamp = datetime.now().strftime("%Y%m%d-%H%M")
+                csv_filename = f"{timestamp}_historique_chatbot.csv"
+                st.sidebar.download_button(
+                    label="Télécharger l'historique",
+                    data=df.to_csv(index=False).encode('utf-8'),
+                    file_name=csv_filename,
+                    mime='text/csv'
+                )
+                st.sidebar.success("Fichier prêt à télécharger.")
             else:
                 st.sidebar.warning("Aucun historique à sauvegarder.")
 
