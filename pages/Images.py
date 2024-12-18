@@ -15,6 +15,6 @@ else:
     prompt1 = st.text_area("Entrez l'url de l'image 1 :")
     prompt2 = st.text_area("Entrez l'url de l'image 2 :")
         
-    if st.button("Lancer l'analyse") and prompt:
+    if st.button("Lancer l'analyse") and prompt1 and prompt2:
         response = get_images_comparaison(client, prompt1, prompt2)
         st.write(response)
