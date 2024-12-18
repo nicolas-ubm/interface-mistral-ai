@@ -13,10 +13,12 @@ else:
     client = Mistral(api_key=mistral_api_key)
     
     prompt = st.text_area("Entrez le texte à traduire :")
-    trad_lang = st.selectbox("Sélectionnez la langue", ["Français", "Allemand", "Anglais", "Espagnol", "Japonais"], index=2)
+    #trad_lang = st.selectbox("Sélectionnez la langue", ["Français", "Allemand", "Anglais", "Espagnol", "Japonais"], index=2)
         
     if st.button("Exécuter") and prompt:
         response = get_translation(client, prompt)
+        response_dict = json.loads(response)
+        st.json(data_dict)
         #st.write(eval(response[O]))
         #st.write(response)
         st.json(response)
