@@ -2,9 +2,7 @@ import streamlit as st
 
 # Application sans doute non fonctionnelle (tests dans le cadre d'une formation)
 st.title('Interface Mistral AI')
-st.set_page_config(
-    page_title="Ex-stream-ly Cool App",    page_icon="🧊",    layout="wide",
-)
+st.set_page_config(page_title="Ex-stream-ly Cool App",    page_icon="🧊",    layout="wide")
 
 
 # ====== Sidebar ======
