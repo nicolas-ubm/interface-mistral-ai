@@ -10,7 +10,7 @@ st.subheader('Mistral AI')
 st.write("Introduction à Mistral AI")
 
 
-if st.checkbox('Afficher l'aide de mise en forme du contenu'):
+if st.checkbox("Afficher l'aide de mise en forme du contenu"):
   st.write("""
   # Titre
   
