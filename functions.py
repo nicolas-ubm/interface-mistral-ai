@@ -130,10 +130,10 @@ def get_sentiment(client, prompt):
 
 
 # Fonction pour modérer un texte avec explication
-def get_moderation(text):
+def get_moderation(client, prompt):
     response = client.classifiers.moderate(
         model="mistral-moderation-latest",
-        inputs=[text]
+        inputs=[prompt]
     )
 
     # Catégories de modération Mistral et explications
