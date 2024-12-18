@@ -43,9 +43,9 @@ st.video("https://youtu.be/sgnrL7yo1TE")
 # Lecture d'un fichier CSV avec pandas
 import pandas as pd
 path_url = "https://raw.githubusercontent.com/Quera-fr/My-Credit/refs/heads/main/Analyse%20des%20donn%C3%A9es/test.csv"
-df = pd.read_csv(path_url)
+df = pd.read_csv(path_url, delimiter=";")
 
-st.write(df, delimiter=";")
+st.write(df)
 
 
 
