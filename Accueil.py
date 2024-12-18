@@ -1,4 +1,4 @@
-import streamlit as st
+_age = import streamlit as st
 
 # Application sans doute non fonctionnelle (tests dans le cadre d'une formation)
 st.title('Interface Mistral AI')
@@ -25,13 +25,13 @@ if st.checkbox("Afficher l'aide de mise en forme du contenu"):
 user_name = st.text_input("Quel est votre nom ?")
 print(user_name) #TODO affichage dans la console
 
+# Slider
+st.slider("Quel est votre âge ?", 18,99,30)  #valeurs min,max,default
 
 # Bouton (boolean)
 if st.button("Valider"):
-  st.write(f"Bonjour {user_name} !")
+  st.write(f"Bonjour {user_name}, tu es né en {2024-user_age} !")
 
-# Slider
-st.slider("Quel est votre âge ?", 18,99,30)  #valeurs min,max,default
 
 # Video
 st.video("https://youtu.be/sgnrL7yo1TE")
