@@ -12,9 +12,9 @@ if not mistral_api_key:
 else:
     client = Mistral(api_key=mistral_api_key)
     
-    prompt1 = st.text_area("Entrez l'url de l'image 1 :")
-    prompt2 = st.text_area("Entrez l'url de l'image 2 :")
+    image_1_url = st.text_area("Entrez l'url de l'image 1 :")
+    image_2_url = st.text_area("Entrez l'url de l'image 2 :")
         
-    if st.button("Lancer l'analyse") and prompt1 and prompt2:
-        response = get_images_comparaison(client, prompt1, prompt2)
+    if st.button("Lancer l'analyse") and image_1_url and image_2_url:
+        response = get_images_comparaison(client, image_1_url, image_2_url)
         st.write(response)
