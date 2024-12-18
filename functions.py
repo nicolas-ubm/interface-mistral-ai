@@ -129,7 +129,6 @@ def get_sentiment(client, prompt):
     return eval(response.choices[0].message.content)
 
 
-# Fonction pour modérer un texte avec explication
 def get_moderation(client, prompt):
     response = client.classifiers.moderate(
         model="mistral-moderation-latest",
@@ -171,6 +170,35 @@ def get_moderation(client, prompt):
             "EXPLICATION": "Aucun contenu problématique détecté."
         }
 
+
+def get_translation(client, prompt: str = 'Bonjour', last_interactions=None):
+    if last_interactions is None:
+        last_interactions = []  # Initialise une liste vide si l'historique n'est pas fourni.
+
+    try:
+        # Requête vers l'API de l'agent
+        agent_response = client.agents.complete(
+            agent_id="ag:56f583a3:20241217:traduction-n:08c4f0f0",
+            messages=last_interactions + [
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ],
+        )
+
+        # Extraire le message de la réponse
+        response_assistant = agent_response.choices[0].message.content
+
+        # Mettre à jour l'historique des interactions
+        last_interactions.append({"role": "user", "content": prompt})
+        last_interactions.append({"role": "assistant", "content": response_assistant})
+
+        return response_assistant, last_interactions
+
+    except Exception as e:
+        print(f"Une erreur est survenue : {e}")
+        return "Une erreur est survenue, veuillez réessayer.", last_interactions
 
 
 def get_agent_response(client, prompt:str='Qui es-tu ?', last_interactions=[]):
