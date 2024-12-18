@@ -43,9 +43,15 @@ def display_and_edit_csv(file):
         def convert_df_to_jsonl(df):
             jsonl_data = ""
             for _, row in df.iterrows():
+                try:
+                    # Tenter de charger "reponse" comme JSON, sinon utiliser comme chaîne brute
+                    assistant_content = json.loads(row["reponse"])
+                except (json.JSONDecodeError, TypeError):
+                    assistant_content = row["reponse"]
+
                 messages = [
                     {"role": "user", "content": row["prompt"]},
-                    {"role": "assistant", "content": json.loads(row["reponse"])}
+                    {"role": "assistant", "content": assistant_content}
                 ]
                 jsonl_data += json.dumps({"messages": messages}, ensure_ascii=False) + "\n"
             return jsonl_data.encode('utf-8')
