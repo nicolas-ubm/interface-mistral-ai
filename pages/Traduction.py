@@ -17,5 +17,4 @@ else:
         
     if st.button("Exécuter") and prompt:
         response = get_translation(client, prompt)
-        st.write(response)
-
+        st.write(eval(response[O))
