@@ -76,7 +76,7 @@ if mistral_api_key:
     with col1:
         if st.button("Effacer l'historique"):
             st.session_state.messages = []
-            st.experimental_rerun()
+            st.rerun()
     with col2:
         if st.button("Sauvegarder l'historique"):
             if st.session_state.messages:
