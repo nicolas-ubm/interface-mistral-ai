@@ -46,8 +46,16 @@ path_url = "https://raw.githubusercontent.com/Quera-fr/My-Credit/refs/heads/main
 df = pd.read_csv(path_url, delimiter=";")
 
 #st.write(df)
-st.data_editor(df)
+edited_df = st.data_editor(df)
 
+
+# Bouton de téléchargement des données CSV
+st.download_button(
+    label="Download data as CSV",
+    data=edited_df,
+    file_name="data_edited.csv",
+    mime="text/csv",
+)
 
 
 # ====== Sidebar ======
