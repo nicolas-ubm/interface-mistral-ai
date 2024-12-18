@@ -45,9 +45,9 @@ def display_and_edit_csv(file):
             for _, row in df.iterrows():
                 messages = [
                     {"role": "user", "content": row["prompt"]},
-                    {"role": "assistant", "content": row["reponse"]}
+                    {"role": "assistant", "content": json.loads(row["reponse"])}
                 ]
-                jsonl_data += json.dumps({"messages": messages}) + "\n"
+                jsonl_data += json.dumps({"messages": messages}, ensure_ascii=False) + "\n"
             return jsonl_data.encode('utf-8')
 
         if st.button("Enregistrer en JSONL"):
