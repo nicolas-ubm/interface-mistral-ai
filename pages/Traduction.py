@@ -16,6 +16,6 @@ else:
     trad_lang = st.selectbox("Sélectionnez la langue", ["Français", "Allemand", "Anglais", "Espagnol", "Japonais"], index=2)
         
     if st.button("Exécuter") and prompt:
-        response = get_ner(client, prompt)
+        response = get_translation(client, prompt)
         st.write(response)
 
