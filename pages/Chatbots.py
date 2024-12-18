@@ -1,48 +1,51 @@
 import streamlit as st
-#from functions import *
 from mistralai import Mistral
 
-
 # Agents disponibles
+def get_sentiment(client, prompt):
+    try:
+        agent_response = client.agents.complete(
+            agent_id="ag:56f583a3:20241217:sentiment-n:1be886df",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ],
+        )
+        return agent_response.choices[0].message.content.strip()
+    except Exception as e:
+        return f"Erreur lors de l'appel à l'agent Sentiment : {e}"
 
 def get_emojibot(client, prompt):
-    agent_response = client.agents.complete(
-        agent_id="ag:56f583a3:20241216:emojibot:3a89090a",
-        messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            },
-        ],
-    )
-    #return eval(agent_response.choices[0].message.content)
-    return agent_response.choices[0].message.content.strip()
-
-def get_sentiment(client, prompt):
-    agent_response = client.agents.complete(
-        agent_id="ag:56f583a3:20241217:sentiment-n:1be886df",
-        messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            },
-        ],
-    )
-    return eval(agent_response.choices[0].message.content)
+    try:
+        agent_response = client.agents.complete(
+            agent_id="ag:56f583a3:20241216:emojibot:3a89090a",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ],
+        )
+        return agent_response.choices[0].message.content.strip()
+    except Exception as e:
+        return f"Erreur lors de l'appel à l'agent Emojibot : {e}"
 
 def get_translation(client, prompt):
-    agent_response = client.agents.complete(
-        agent_id="ag:56f583a3:20241217:traduction-n:08c4f0f0",
-        messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            },
-        ],
-    )
-    return eval(agent_response.choices[0].message.content)
-
-
+    try:
+        agent_response = client.agents.complete(
+            agent_id="ag:56f583a3:20241217:traduction-n:08c4f0f0",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ],
+        )
+        return agent_response.choices[0].message.content.strip()
+    except Exception as e:
+        return f"Erreur lors de l'appel à l'agent Traduction : {e}"
 
 st.title("Discussion avec Mistral Agent")
 
@@ -61,6 +64,9 @@ if mistral_api_key:
         "Traduction": get_translation
     }
     selected_agent = st.sidebar.selectbox("Choisissez un agent", list(agent_options.keys()), key="selected_agent")
+
+    # Change le titre de la page selon l'agent choisi
+    st.title(f"Discussion avec {selected_agent}")
 
     # Initialize chat history
     if "messages" not in st.session_state:
