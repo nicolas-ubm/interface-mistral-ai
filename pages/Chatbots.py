@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from mistralai import Mistral
 
 # Agents disponibles
@@ -47,10 +48,8 @@ def get_translation(client, prompt):
     except Exception as e:
         return f"Erreur lors de l'appel à l'agent Traduction : {e}"
 
-st.title("Discussion avec Mistral Agent")
-
 # Demande une clé API dans la sidebar
-mistral_api_key = st.sidebar.text_input("Entrez votre clé API", type="password", key="api_key", help="Vous pouvez générer une clé sur le site https://mistral.ai/")
+mistral_api_key = st.sidebar.text_input("Entrez votre clé Mistral API", type="password", key="api_key", help="Vous pouvez générer une clé sur le site https://mistral.ai/")
 
 if mistral_api_key:
     if "client" not in st.session_state:
@@ -71,6 +70,29 @@ if mistral_api_key:
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
+
+    # Boutons pour effacer ou sauvegarder l'historique
+    col1, col2 = st.sidebar.columns(2)
+    with col1:
+        if st.button("Effacer l'historique"):
+            st.session_state.messages = []
+            st.experimental_rerun()
+    with col2:
+        if st.button("Sauvegarder l'historique"):
+            if st.session_state.messages:
+                data = [
+                    {
+                        "agent_id": agent_options[selected_agent].__name__,
+                        "prompt": msg["content"] if msg["role"] == "user" else "",
+                        "reponse": msg["content"] if msg["role"] == "assistant" else ""
+                    }
+                    for msg in st.session_state.messages
+                ]
+                df = pd.DataFrame(data)
+                df.to_csv("historique_chat.csv", index=False)
+                st.sidebar.success("Historique sauvegardé en CSV")
+            else:
+                st.sidebar.warning("Aucun historique à sauvegarder.")
 
     # Display chat messages from history on app rerun
     for message in st.session_state.messages:
