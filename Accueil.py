@@ -21,11 +21,14 @@ st.write("""
 
 # Zone de saisie
 user_name = st.text_input("Quel est votre nom ?")
-st.write(f"Bonjour {user_name} !")
-print(user_name)
+print(user_name) #TODO
 
-# Bouton
 
+# Bouton (boolean)
+if st.button("Valider"):
+  st.write(f"Bonjour {user_name} !")
+
+  
 
 # Slider
 
