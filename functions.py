@@ -129,6 +129,50 @@ def get_sentiment(client, prompt):
     return eval(response.choices[0].message.content)
 
 
+# Fonction pour modérer un texte avec explication
+def get_moderation(text):
+    response = client.classifiers.moderate(
+        model="mistral-moderation-latest",
+        inputs=[text]
+    )
+
+    # Catégories de modération Mistral et explications
+    categories = {
+        "sexual": "Sexualité (contient des références sexuelles explicites ou inappropriées).",
+        "hate_and_discrimination": "Haine (incite à la haine ou à la discrimination envers un groupe).",
+        "violence_and_threats": "Violences (promeut ou menace de violences).",
+        "dangerous_and_criminal_content": "Contenus Dangereux (propose des activités illégales ou dangereuses).",
+        "selfharm": "Auto-mutilation (fait référence à des blessures auto-infligées ou au suicide).",
+        "health": "Santé (contient des informations médicales potentiellement trompeuses ou dangereuses).",
+        "financial": "Financier (propose des arnaques financières ou du spam commercial).",
+        "law": "Légal (enfreint les lois ou contient du contenu juridiquement problématique).",
+        "pii": "PII (contient des informations personnelles identifiables)."
+    }
+
+    # Extraire les résultats
+    result = response.results[0]
+    #print(f"{result=}")
+    categories_detectees = []
+
+    # Ajouter les explications des catégories détectées comme problématiques
+    for categorie, description in categories.items():
+        if result.categories.get(categorie, False):  # Vérifie si la catégorie est True
+            categories_detectees.append(description)
+
+    # Retourner True si des catégories sont détectées, sinon False
+    if categories_detectees:
+        return {
+            "STATUT": True,
+            "EXPLICATION": categories_detectees
+        }
+    else:
+        return {
+            "STATUT": False,
+            "EXPLICATION": "Aucun contenu problématique détecté."
+        }
+
+
+
 def get_agent_response(client, prompt:str='Qui es-tu ?', last_interactions=[]):
     """ 
     Fonction qui retourne la réponse de l'agent et l'historique des interactions.
