@@ -1,5 +1,5 @@
 import streamlit as st
-from functions import get_ner, 
+#from functions import *
 from mistralai import Mistral
 
 
