@@ -21,7 +21,7 @@ st.write("""
 
 # Zone de saisie
 user_name = st.text_input("Quel est votre nom ?")
-st.write(f"Bonjour {user_name} !)
+st.write("Bonjour {user_name} !")
 print(user_name)
 
 # Bouton
