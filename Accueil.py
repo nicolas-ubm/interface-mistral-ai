@@ -23,15 +23,14 @@ if st.checkbox("Afficher l'aide de mise en forme du contenu"):
 
 # Zone de saisie
 user_name = st.text_input("Quel est votre nom ?")
-print(user_name) #TODO
+print(user_name) #TODO affichage dans la console
 
 
 # Bouton (boolean)
 if st.button("Valider"):
   st.write(f"Bonjour {user_name} !")
 
-# Image
-st.image("https://mistral.ai/images/logo_hubc88c4ece131b91c7cb753f40e9e1cc5_2589_256x0_resize_q97_h2_lanczos_3.webp")
+
 
 # Video
 st.video("https://youtu.be/sgnrL7yo1TE")
@@ -41,3 +40,6 @@ st.video("https://youtu.be/sgnrL7yo1TE")
 
 # Lecture d'un fichier CSV avec pandas
 
+# ====== Sidebar ======
+# Image dans la sidebar
+st.sidebar.image("https://mistral.ai/images/logo_hubc88c4ece131b91c7cb753f40e9e1cc5_2589_256x0_resize_q97_h2_lanczos_3.webp")
