@@ -15,7 +15,8 @@ def get_emojibot(client, prompt):
             },
         ],
     )
-    return eval(agent_response.choices[0].message.content)
+    #return eval(agent_response.choices[0].message.content)
+    return agent_response.choices[0].message.content.strip()
 
 def get_sentiment(client, prompt):
     agent_response = client.agents.complete(
