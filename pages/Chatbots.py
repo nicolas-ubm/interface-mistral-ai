@@ -1,6 +1,47 @@
 import streamlit as st
-from functions import get_ner
+from functions import get_ner, 
 from mistralai import Mistral
+
+
+# Agents disponibles
+
+def get_emojibot(client, prompt):
+    agent_response = client.agents.complete(
+        agent_id="ag:56f583a3:20241216:emojibot:3a89090a",
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            },
+        ],
+    )
+    return eval(agent_response.choices[0].message.content)
+
+def get_sentiment(client, prompt):
+    agent_response = client.agents.complete(
+        agent_id="ag:56f583a3:20241217:sentiment-n:1be886df",
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            },
+        ],
+    )
+    return eval(agent_response.choices[0].message.content)
+
+def get_translation(client, prompt):
+    agent_response = client.agents.complete(
+        agent_id="ag:56f583a3:20241217:traduction-n:08c4f0f0",
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            },
+        ],
+    )
+    return eval(agent_response.choices[0].message.content)
+
+
 
 st.title("Discussion avec Mistral Agent")
 
