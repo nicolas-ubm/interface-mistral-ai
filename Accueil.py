@@ -13,6 +13,6 @@ st.sidebar.image("https://mistral.ai/images/logo_hubc88c4ece131b91c7cb753f40e9e1
 mistral_api_key = st.sidebar.text_input("Entrez votre clé API", type="password", key="api_key", help="Générez une clé sur le site https://mistral.ai/")
 
 if mistral_api_key:
-    st.write("Introduction à Mistral AI")
+    st.write("Introduction à Mistral AI 2024")
 else:
     st.sidebar.warning("Veuillez entrer une clé API valide pour continuer.")
